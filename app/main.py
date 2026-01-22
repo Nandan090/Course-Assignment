@@ -15,8 +15,8 @@ def read_root():
 
 
 @app.get("/protected")
-def read_protected(api_key: str):
-    if not API or api_key != API:
+def read_protected(api_key: str = None):
+    if not api_key or api_key != API:
         raise HTTPException(status_code=401, detail="Unauthorized access")
 
     return {"msg": "Welcome to the protected route!"}
